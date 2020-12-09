@@ -57,7 +57,7 @@ class Gallery extends ActiveRecord
                 'url' => '@web/upload/gallery/{id}',
                 'placeholder' => '@tests/data/test-image.jpg',
                 'createThumbsOnRequest' => true,
-                'createThumbsOnSave' => false,
+                'createThumbsOnSave' => true,
                 'generateNewName' => false,
                 'thumbs' => [
                     'thumb' => ['width' => 400, 'quality' => 90],

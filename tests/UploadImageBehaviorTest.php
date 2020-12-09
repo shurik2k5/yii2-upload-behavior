@@ -147,6 +147,32 @@ class UploadImageBehaviorTest extends DatabaseTestCase
         $this->assertContains('assets', $url2);
     }
 
+    public function testDeleteImage()
+    {
+        $gallery = Gallery::findOne(4);
+
+        $gallery->setScenario('update');
+
+        $this->assertTrue($gallery->save());
+
+        $path = $gallery->getUploadPath('image2');
+        $this->assertFileExists($path);
+
+        $thumb = $gallery->getThumbUploadPath('image2', 'thumb');
+        $preview = $gallery->getThumbUploadPath('image2', 'preview');
+
+        $this->assertFileExists($thumb);
+        $this->assertFileExists($preview);
+
+        $gallery->deleteImage('image2');
+
+        $this->assertEquals('', $gallery->image2);
+
+        $this->assertFileNotExists($path);
+        $this->assertFileNotExists($thumb);
+        $this->assertFileNotExists($preview);
+    }
+
     /**
      * @inheritdoc
      */

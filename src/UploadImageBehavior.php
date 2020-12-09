@@ -316,4 +316,18 @@ class UploadImageBehavior extends UploadBehavior
         }
         parent::delete($attribute, $old);
     }
+
+    /**
+     * Remove image and all thumbs
+     *
+     * @param       $attribute
+     * @param false $old
+     */
+    public function deleteImage($attribute, $old = false)
+    {
+        $this->delete($attribute, $old);
+        $this->owner->updateAttributes([
+            $attribute => ''
+        ]);
+    }
 }

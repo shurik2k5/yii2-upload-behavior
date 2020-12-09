@@ -179,6 +179,13 @@ class User extends ActiveRecord
 }
 ```
 
+### Remove upload image and all thumbs
+```php
+//remove image and all thumbs from 'photo' attribute
+$model->deleteImage('photo');
+
+```
+
 ## Flexible configuration for path and URL generation 
 
 More flexible configuration for `path` and/or `url` behavior properties is that to use 
